@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    text-align: center;
+}
+
+/* ---------- BACKGROUND-COLORS -----------*/
+.bg-pink {
+    background-color: pink;
+}
+
+.bg-black {
+    background-color: black;
+}
+
+.bg-yellow {
+    background-color: yellow;
+}
+
+.bg-red {
+    background-color: red;
+}
+
+.bg-orange {
+    background-color: orange;
+}
+
+.bg-blue {
+    background-color: blue;
+}
+
+.bg-gray {
+    background-color: gray;
+}
+
+.bg-green {
+    background-color: green;
+}
+
+.bg-lime {
+    background-color: rgb(0, 247, 255);
+}
+
+.bg-white {
+    background-color: white;
+}
+
+/* ---------- WIDTH -----------*/
+
+.w-80 {
+    width: 80%;
+}
+
+.w-33 {
+    width: 33.33333%;
+}
+
+.w-25 {
+    width: 25%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+/* ---------- HEIGHT -----------*/
+.h-600 {
+    height: 600px;
+}
+
+.h-300 {
+    height: 300px;
+}
+
+.h-150 {
+    height: 150px;
+}
+
+.h-40 {
+    height: 40%;
+}
+
+.h-75 {
+    height: 75%;
+}
+
+.h-60 {
+    height: 60%;
+}
+
+.h-50 {
+    height: 50%;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.h-25 {
+    height: 25%;
+}
+
+.h-90 {
+    height: 90%;
+}
+
+.h-18 {
+    height: 18px;
+    border-color: gray;
+}
+
+/* ---------- MARGIN -----------*/
+.m-auto {
+    margin: 0 auto;
+}
+
+.m-top50 {
+    margin-top: 50px;
+}
+
+.m-top100 {
+    margin-top: 100px;
+}
+
+/* ---------- FLOAT-----------*/
+.fl-left {
+    float: left;
+}
+
+.fl-right {
+    float: right;
+    clear: right;
+}
+
+.fl-clear {
+    clear: left;
+}
+
+/* ---------- PADDING -----------*/
+.pad-top50 {
+    padding-top: 50px;
+}
