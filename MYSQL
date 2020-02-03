@@ -1,0 +1,43 @@
+# 1. Вибрати усіх клієнтів, чиє ім'я має менше ніж 6 символів.
+# SELECT * FROM client
+#     WHERE LENGTH(FirstName) < 6
+
+# 2. Вибрати львівські відділення банку.
+# SELECT * FROM department WHERE DepartmentCity = 'Lviv';
+
+# 3. Вибрати клієнтів з вищою освітою та посортувати по прізвищу.
+# SELECT * FROM client
+#     WHERE Education = 'high'
+#     ORDER BY LastName
+
+# 4. Виконати сортування у зворотньому порядку над таблицею Заявка і вивести 5 останніх елементів.
+# SELECT * FROM (SELECT * FROM application
+#     ORDER BY idApplication LIMIT 5) AS id
+#     ORDER BY idApplication DESC
+
+# 5. Вивести усіх клієнтів, чиє прізвище закінчується на iv чи riv.
+# SELECT * FROM client
+#     WHERE LastName LIKE '%iv' OR LastName LIKE '%riv'
+
+# 6. Вивести клієнтів банку, які обслуговуються київськими відділеннями.
+# SELECT * FROM client
+#     WHERE City = 'Kyiv'
+
+# 7. Вивести імена клієнтів та їхні номера паспорта, погрупувавши їх за іменами.
+# SELECT FirstName,Passport FROM client
+#     ORDER BY FirstName ASC
+
+# 8. Вивести дані про клієнтів, які мають кредит більше ніж на 5000 тисяч гривень.
+# SELECT * FROM client
+# join application a on client.idClient = a.Client_idClient
+# WHERE Sum > 5000
+
+# 9. Порахувати кількість клієнтів усіх відділень та лише львівських відділень.
+# SELECT COUNT(idClient) AS 'ALL' FROM client
+# JOIN department d on client.Department_idDepartment = d.idDepartment
+# UNION
+# SELECT COUNT(idDepartment) AS 'LVIV' FROM department
+# JOIN client c on department.idDepartment = c.Department_idDepartment
+# WHERE City = 'Lviv'
+
+# 10.  Знайти кредити, які мають найбільшу суму для кожного клієнта окремо.
