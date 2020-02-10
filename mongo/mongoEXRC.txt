@@ -1,0 +1,157 @@
+1) Знайти всіх дітей в яких сердня оцінка 4.2
+db.student.find({
+ avgScore: 4.2
+}).pretty()
+
+2) Знайди всіх дітей з 1 класу
+db.student.find({ class: 1}).pretty()
+
+3) Знайти всіх дітей які вивчають фізику
+db.student.find({ lessons: "physics" }).pretty()
+
+4) Знайти всіх дітей, батьки яких працюють в науці ( scientist )
+db.student.find({ "parents.profession" : "scientist" }).pretty()
+
+5) Знайти дітей, в яких середня оцінка більша за 4
+db.student.find({ avgScore: { $gt: 4 } }).pretty()
+
+6) Знайти найкращого учня
+db.student.find().sort({ avgScore: -1}).limit(1).pretty()
+
+7) Знайти найгіршого учня
+db.student.find().sort({ avgScore: -2}).limit(1).pretty()
+
+8) Знайти топ 3 учнів
+db.student.find().sort({ avgScore: -1}).limit(3).pretty()
+
+9) Знайти середній бал по школі
+db.student.aggregate({ $group : {"_id": "",'average': {$avg: '$avgScore'}}}).pretty()
+
+10) Знайти середній бал дітей які вивчають математику або фізику
+db.student.aggregate([
+    {
+    $match: {
+        lessons: {
+            $in: ['mathematics', 'physics']
+        }
+    }
+},
+{
+    $group: {
+        '_id': "",
+        'average': {
+            $avg: '$avgScore'
+        }
+    }
+}
+]).pretty()
+
+11) Знайти середній бал по 2 класі
+db.student.aggregate([
+    {
+    $match: {
+        class: 2
+    }
+},
+{
+    $group: {
+        '_id': "",
+        'average': {
+            $avg: '$avgScore'
+        }
+    }
+}
+]).pretty()
+
+12) Знайти дітей з не повною сімєю
+db.student.find({
+    parents: {
+        $exists: false
+    }
+}).pretty()
+
+13) Знайти батьків які не працюють
+db.student.find({
+    $and: [
+      {
+        parents: {
+          $ne: null
+        }
+      },
+      {
+        "parents.profession": null
+      }
+    ]
+  }).pretty()
+
+14) Не працюючих батьків влаштувати офіціантами
+db.student.update({
+    $and: [
+      {
+        parents: {
+          $ne: null
+        }
+      },
+      {
+        "parents.profession": null
+      }
+    ]
+  },
+    {
+        $set: {
+            'parents.$.profession': 'waitress'
+        }
+    },
+    {
+        multi: true
+    }
+  )
+  
+15) Вигнати дітей, які мають середній бал менше ніж 2.5
+db.student.remove({
+    avgScore: {
+        $lt: 2.5
+    }
+})
+
+16) Дітям, батьки яких працюють в освіті ( teacher ) поставити 5
+db.student.updateMany(
+  {
+    'parents.profession': 'teacher'
+  },
+  {
+    $set: {
+      avgScore: 5
+    }
+  }
+)
+
+17) Знайти дітей які вчаться в початковій школі (до 5 класу) і вивчають фізику ( physics )
+db.student.find({
+  class: {
+    $lt: 5
+  },
+  lessons: 'physics'
+}).pretty()
+
+18) Знайти найуспішніший клас
+db.student.aggregate(
+  [
+    {
+      $group: {
+        "_id": '$class',
+        'classAvg': {
+          $avg: '$avgScore'
+        }
+      }
+    },
+    {
+      $sort: {
+        'classAvg': -1
+      }
+    },
+    {
+      $limit: 1
+    }
+  ]
+).pretty()
